@@ -1,11 +1,15 @@
+import { ModelFeature } from "../../../lib/api/cars";
 import { CardDetailFeatureCard } from "./feature-card";
 import { CarDetailFeaturesRoot } from "./styled";
-
-export function CarDetailFeatures() {
+interface Props {
+  features: ModelFeature[];
+}
+export function CarDetailFeatures({ features }: Props) {
   return (
     <CarDetailFeaturesRoot>
-      <CardDetailFeatureCard />
-      <CardDetailFeatureCard />
+      {features.map((feature) => (
+        <CardDetailFeatureCard feature={feature} />
+      ))}
     </CarDetailFeaturesRoot>
   );
 }

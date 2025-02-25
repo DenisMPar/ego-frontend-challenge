@@ -1,3 +1,4 @@
+import { CarFeatures } from "../../../lib/api/cars";
 import { Body, TitleSecondary } from "../../../ui/tipography";
 import {
   CarDetailHeroCaption,
@@ -7,20 +8,20 @@ import {
   CarDetailHeroTitleContainer,
 } from "./styled";
 
-export function CarDetailHero() {
+interface Props {
+  carFeatures: CarFeatures;
+}
+
+export function CarDetailHero({ carFeatures }: Props) {
   return (
     <CarDetailHeroRoot>
-      <CarDetailHeroImage src="https://challenge.egodesign.dev/media/images/corolla_plata_metalico.width-600.png" />
+      <CarDetailHeroImage src={carFeatures.photo} />
       <CarDetailHeroTextContainer>
         <CarDetailHeroTitleContainer>
-          <CarDetailHeroCaption>Hilux DX/SR</CarDetailHeroCaption>
-          <TitleSecondary>Preparada para cualquier desafío </TitleSecondary>
+          <CarDetailHeroCaption>{carFeatures.name}</CarDetailHeroCaption>
+          <TitleSecondary>{carFeatures.title} </TitleSecondary>
         </CarDetailHeroTitleContainer>
-        <Body>
-          Mayor durabilidad, estabilidad, confort de marcha y mucha seguridad.
-          Lorem ipsum dolor sit amet. lorem ipsum dolor sit amet orem ipsum
-          dolor.
-        </Body>
+        <Body>{carFeatures.description.replace(/(<([^>]+)>)/gi, "")}</Body>
       </CarDetailHeroTextContainer>
     </CarDetailHeroRoot>
   );

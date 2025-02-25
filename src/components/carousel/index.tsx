@@ -37,13 +37,13 @@ function Arrow({ left, onClick, disabled }: ArrowProps) {
 }
 
 export interface CarouselProps {
-  carFeatures: {
+  carHiglights: {
     title: string;
     content: string;
     image: string;
   }[];
 }
-export function CarouselComponent({ carFeatures }: CarouselProps) {
+export function CarouselComponent({ carHiglights }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -59,11 +59,11 @@ export function CarouselComponent({ carFeatures }: CarouselProps) {
     },
   });
 
-  const finalSlide = carFeatures.length - 1;
+  const finalSlide = carHiglights.length - 1;
   return (
     <CarouselWrapper>
       <CarouselSlider ref={sliderRef} className="keen-slider">
-        {carFeatures.map((feature, idx) => (
+        {carHiglights.map((feature, idx) => (
           <CarouselSlide
             key={idx}
             className={`keen-slider__slide ${

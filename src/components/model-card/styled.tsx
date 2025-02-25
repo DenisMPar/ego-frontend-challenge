@@ -1,6 +1,7 @@
+import { Link } from "react-router";
 import styled from "styled-components";
 
-export const ModelCardRoot = styled.div`
+export const ModelCardRoot = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +11,8 @@ export const ModelCardRoot = styled.div`
   height: 100%;
   max-width: 268px;
   max-height: 182px;
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const ModelCardImageContainer = styled.div`

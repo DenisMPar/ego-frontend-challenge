@@ -1,29 +1,20 @@
+import { CarModelData } from "../../../lib/api/cars";
 import { ModelCardComponent } from "../../model-card";
 import { CarListFilter } from "../filter";
 import { CarListContainer, CarListRoot } from "./styled";
 
-export function CarList() {
+interface CarListProps {
+  carList: CarModelData[];
+}
+
+export function CarList({ carList }: CarListProps) {
   return (
     <CarListRoot>
       <CarListFilter />
       <CarListContainer>
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
-        <ModelCardComponent />
+        {carList.map((car) => (
+          <ModelCardComponent key={car.id} carData={car} />
+        ))}
       </CarListContainer>
     </CarListRoot>
   );

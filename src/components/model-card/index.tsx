@@ -1,3 +1,4 @@
+import { CarModelData } from "../../lib/api/cars";
 import { Caption2, TitleTertiary } from "../../ui/tipography";
 import {
   ModelCardImage,
@@ -5,13 +6,19 @@ import {
   ModelCardRoot,
 } from "./styled";
 
-export function ModelCardComponent() {
+interface ModelCardProps {
+  carData: CarModelData;
+}
+
+export function ModelCardComponent({ carData }: ModelCardProps) {
   return (
-    <ModelCardRoot>
-      <TitleTertiary>Etios</TitleTertiary>
+    <ModelCardRoot to={`/model/${carData.id}`}>
+      <TitleTertiary>{carData.name}</TitleTertiary>
       <ModelCardImageContainer>
-        <Caption2>2019 | $ 815.900</Caption2>
-        <ModelCardImage src="https://challenge.egodesign.dev/media/images/CAMRY-V6_LAT-Negro.width-300.png" />
+        <Caption2>
+          {carData.year} | ${carData.price.toLocaleString("es-AR")}
+        </Caption2>
+        <ModelCardImage src={carData.thumbnail} />
       </ModelCardImageContainer>
     </ModelCardRoot>
   );

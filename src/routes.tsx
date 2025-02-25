@@ -8,7 +8,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomeComponent />} />
-        <Route path="details" element={<CarDetailComponent />} />
+        <Route path="model/:id" element={<CarDetailComponent />} />
       </Route>
     </Routes>
   );
