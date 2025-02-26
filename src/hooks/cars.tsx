@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { CarModelData } from "../lib/api/cars";
+import {
+  CarModelData,
+  fetchCarFeatures,
+  fetchCarModels,
+} from "../lib/api/cars";
+import { useQuery } from "@tanstack/react-query";
 
 export function useGetFileteredCars({
   cars,
@@ -48,4 +53,29 @@ export function useGetFileteredCars({
     return result;
   }, [cars, typeFilter, sortOption]);
   return filteredCars;
+}
+
+export function useGetCars() {
+  const { data, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ["cars"],
+    queryFn: fetchCarModels,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  return { cars: data, isLoading, isError, isSuccess };
+}
+
+export function useGetCarDetails(modelId: string) {
+  const {
+    data: carDetails,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery({
+    queryKey: ["car-features"],
+    queryFn: () => fetchCarFeatures(modelId),
+    staleTime: 1000 * 60 * 5,
+  });
+
+  return { carDetails, isLoading, isError, isSuccess };
 }

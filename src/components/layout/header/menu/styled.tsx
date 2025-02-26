@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router";
 import styled from "styled-components";
 
-export const HeaderMenuRoot = styled.div`
+export const HeaderMenuRoot = styled(motion.div)`
   width: 100%;
   height: calc(100vh - 70px);
   overflow: auto;

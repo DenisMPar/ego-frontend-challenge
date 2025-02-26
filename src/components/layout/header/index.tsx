@@ -10,6 +10,7 @@ import {
   HeaderRoot,
   StyledBurgerIcon,
 } from "./styled";
+import { AnimatePresence } from "framer-motion";
 
 export function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,9 @@ export function HeaderComponent() {
       <HeaderIconButton onClick={() => setIsOpen(true)}>
         <StyledBurgerIcon />
       </HeaderIconButton>
-      {isOpen && <HeaderMenuComponent handleClose={setIsOpen} />}
+      <AnimatePresence>
+        {isOpen && <HeaderMenuComponent handleClose={setIsOpen} />}
+      </AnimatePresence>
     </HeaderRoot>
   );
 }

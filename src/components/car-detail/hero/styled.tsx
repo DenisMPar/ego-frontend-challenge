@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Caption, TitleSecondary } from "../../../ui/tipography";
+import { motion } from "framer-motion";
 
 export const CarDetailHeroRoot = styled.div`
   height: 494px;
@@ -18,7 +19,8 @@ export const CarDetailHeroRoot = styled.div`
     padding: 0px;
   }
 `;
-export const CarDetailHeroImage = styled.img`
+export const CarDetailHeroImage = styled(motion.img)`
+  position: relative;
   width: 100%;
   height: 200px;
   object-fit: scale-down;
@@ -26,7 +28,8 @@ export const CarDetailHeroImage = styled.img`
     height: auto;
   }
 `;
-export const CarDetailHeroTextContainer = styled.div`
+export const CarDetailHeroTextContainer = styled(motion.div)`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

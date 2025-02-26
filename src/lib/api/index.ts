@@ -10,6 +10,7 @@ export async function fetcher<T>(
     const errorMessage = `Error ${res.status}: ${res.statusText}`;
     throw new Error(errorMessage);
   }
+  const response = await res.json();
 
-  return res.json();
+  return response;
 }

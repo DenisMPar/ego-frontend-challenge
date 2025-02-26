@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
-import { HomeComponent } from "./components/home";
 import { CarDetailComponent } from "./components/car-detail";
+import { HomeComponent } from "./components/home";
 import { Layout } from "./components/layout";
 
 export function AppRoutes() {

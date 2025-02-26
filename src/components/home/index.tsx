@@ -1,12 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useGetFileteredCars } from "../../hooks/cars";
-import { fetchCarModels } from "../../lib/api/cars";
+import { useGetCars, useGetFileteredCars } from "../../hooks/cars";
 import { TitlePrimary, TitleQuaternary } from "../../ui/tipography";
 import { CarList } from "./car-list";
+import { FilterContext } from "./context";
 import { CarListSkeletons } from "./skeletons";
 import { HomeRoot } from "./styled";
-import { FilterContext } from "./context";
 
 export interface FiltersType {
   type: string;
@@ -19,15 +17,7 @@ export function HomeComponent() {
     sort: "asc",
   });
 
-  const {
-    data: cars,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["cars"],
-    queryFn: fetchCarModels,
-    staleTime: 1000 * 60 * 5,
-  });
+  const { cars, isLoading, isError } = useGetCars();
 
   const filteredCars = useGetFileteredCars({
     cars,

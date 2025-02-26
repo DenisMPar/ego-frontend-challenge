@@ -7,7 +7,7 @@ import {
 
 export function CarDetailSkeletons() {
   return (
-    <SkeletonRoot>
+    <SkeletonRoot role="status">
       <SkeletonContainerMobile>
         <Skeleton $height="200px" $width="300px" />
         <Skeleton $height="20px" $width="50px" />

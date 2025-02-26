@@ -9,7 +9,7 @@ interface CarListProps {
 
 export function CarList({ carList }: CarListProps) {
   return (
-    <CarListRoot>
+    <CarListRoot role="list">
       <CarListFilter />
       <CarListContainer>
         {carList.map((car) => (

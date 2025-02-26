@@ -15,7 +15,11 @@ export function HeaderMenuComponent({
   handleClose: (isOpen: boolean) => void;
 }) {
   return (
-    <HeaderMenuRoot>
+    <HeaderMenuRoot
+      initial={{ right: "-100%", opacity: 0 }}
+      animate={{ right: 0, opacity: 1 }}
+      exit={{ right: "-100%", opacity: 0 }}
+    >
       <HeaderMenuButton onClick={() => handleClose(false)}>
         Cerrar <CloseIcon />
       </HeaderMenuButton>

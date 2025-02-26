@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ArrowUpIcon } from "../../ui/icons";
+import { motion } from "framer-motion";
 
 export const DropDownRoot = styled.div`
   position: relative;
@@ -32,7 +33,7 @@ export const DropDownButton = styled.button<{ $justify: "left" | "right" }>`
     outline: none;
   }
 `;
-export const DropDownList = styled.ul<{ $justify: "left" | "right" }>`
+export const DropDownList = styled(motion.ul)<{ $justify: "left" | "right" }>`
   width: 100%;
   max-width: 170px;
   position: absolute;
@@ -50,7 +51,7 @@ export const DropDownList = styled.ul<{ $justify: "left" | "right" }>`
   z-index: 1;
 `;
 
-export const ListItem = styled.li<{ selected: boolean }>`
+export const ListItem = styled(motion.li)<{ selected: boolean }>`
   padding: 16px 8px;
   background-color: ${(props) =>
     props.selected ? "var(--black-4)" : "var(--white)"};
@@ -59,7 +60,7 @@ export const ListItem = styled.li<{ selected: boolean }>`
     background-color: var(--black-4);
   }
 `;
-export const DropDownSeparator = styled.hr`
+export const DropDownSeparator = styled(motion.hr)`
   border-top: 1px solid var(--gray-3);
   margin: 0;
 `;

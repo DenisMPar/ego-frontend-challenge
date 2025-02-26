@@ -8,6 +8,7 @@ import {
   DropDownSeparator,
   ListItem,
 } from "./styled";
+import { AnimatePresence } from "framer-motion";
 
 interface Props {
   justify: "left" | "right";
@@ -58,21 +59,49 @@ export function DropDownComponent({
         {title}
         <DropDownArrow $isOpen={isOpen} />
       </DropDownButton>
-      {isOpen && (
-        <DropDownList $justify={justify}>
-          {items.map((item, index) => (
-            <Fragment key={item.value}>
-              <ListItem
-                selected={selectedOption === item.value}
-                onClick={() => handleClickItem(item)}
-              >
-                <Caption3>{item.text}</Caption3>
-              </ListItem>
-              {index < items.length - 1 && <DropDownSeparator />}
-            </Fragment>
-          ))}
-        </DropDownList>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <DropDownList
+            $justify={justify}
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+          >
+            {items.map((item, index) => (
+              <Fragment key={item.value}>
+                <ListItem
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: { duration: 0.5, ease: "easeIn" },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.1, ease: "easeOut" },
+                  }}
+                  selected={selectedOption === item.value}
+                  onClick={() => handleClickItem(item)}
+                >
+                  <Caption3>{item.text}</Caption3>
+                </ListItem>
+                {index < items.length - 1 && (
+                  <DropDownSeparator
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { duration: 0.5, ease: "easeIn" },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0.1, ease: "easeOut" },
+                    }}
+                  />
+                )}
+              </Fragment>
+            ))}
+          </DropDownList>
+        )}
+      </AnimatePresence>
     </DropDownRoot>
   );
 }

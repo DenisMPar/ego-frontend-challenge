@@ -20,8 +20,17 @@ export function CarDetailHero({ carFeatures }: Props) {
   );
   return (
     <CarDetailHeroRoot>
-      <CarDetailHeroImage src={carFeatures.photo} />
-      <CarDetailHeroTextContainer>
+      <CarDetailHeroImage
+        initial={{ left: "-100%", opacity: 0 }}
+        animate={{ left: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        src={carFeatures.photo}
+      />
+      <CarDetailHeroTextContainer
+        initial={{ top: "-100%", opacity: 0 }}
+        animate={{ top: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         <CarDetailHeroTitleContainer>
           <CarDetailHeroCaption>{carFeatures.name}</CarDetailHeroCaption>
           <CarDetailHeroTitle>{carFeatures.title} </CarDetailHeroTitle>
