@@ -10,9 +10,8 @@ Instalar los paquetes con tu comando preferido
 
 `yarn install`
 
-> Crear un archivo .env con la siguiente variable en el directorio raiz (al mismo nivel que package.json, index.html, etc)
->
-> `VITE_API_URL = https://challenge.egodesign.dev/api`
+### Crear un archivo .env con la siguiente variable en el directorio raiz (al mismo nivel que package.json, index.html, etc):
+👉 **`VITE_API_URL = https://challenge.egodesign.dev/api`**
 
 Para levantar el proyecto en modo desarrollo:
 
