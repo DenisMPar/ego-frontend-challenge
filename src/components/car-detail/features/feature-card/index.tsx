@@ -3,14 +3,23 @@ import { Body, TitleQuaternary } from "../../../../ui/tipography";
 import {
   CarDetailFeaturesCardImage,
   CarDetailFeaturesCardRoot,
+  CarDetailFeaturesCardTextContainer,
 } from "./styled";
 
-export function CardDetailFeatureCard({ feature }: { feature: ModelFeature }) {
+export function CardDetailFeatureCard({
+  feature,
+  imageRight,
+}: {
+  feature: ModelFeature;
+  imageRight: boolean;
+}) {
   return (
-    <CarDetailFeaturesCardRoot>
+    <CarDetailFeaturesCardRoot $imageRight={imageRight}>
       <CarDetailFeaturesCardImage src={feature.image} />
-      <TitleQuaternary>{feature.name}</TitleQuaternary>
-      <Body>{feature.description}</Body>
+      <CarDetailFeaturesCardTextContainer>
+        <TitleQuaternary>{feature.name}</TitleQuaternary>
+        <Body>{feature.description}</Body>
+      </CarDetailFeaturesCardTextContainer>
     </CarDetailFeaturesCardRoot>
   );
 }

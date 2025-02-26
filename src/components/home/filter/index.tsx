@@ -1,5 +1,7 @@
+import { Chip } from "../../../ui/chips";
 import { DropDownComponent } from "../../drop-down";
-import { FilterRoot } from "./styled";
+import { useFilterContext } from "../context";
+import { FilterRoot, NavFilter, TypeFilterMobile } from "./styled";
 
 const filterOptions = [
   { text: "Todos", value: "all" },
@@ -42,15 +44,28 @@ const orderOptions = [
   },
 ];
 export function CarListFilter() {
+  const { filters, setFilters } = useFilterContext();
+
   function handleFilterChange(value: string) {
-    console.log(value);
+    setFilters({ ...filters, type: value });
   }
   function handleOrderChange(value: string) {
-    console.log(value);
+    setFilters({ ...filters, sort: value });
   }
   return (
     <FilterRoot>
-      <DropDownComponent
+      <NavFilter>
+        {filterOptions.map((item) => (
+          <Chip
+            key={item.value}
+            $active={filters.type === item.value ? "true" : undefined}
+            onClick={() => handleFilterChange(item.value)}
+          >
+            {item.text}
+          </Chip>
+        ))}
+      </NavFilter>
+      <TypeFilterMobile
         justify="left"
         title="Filtrar por"
         items={filterOptions}

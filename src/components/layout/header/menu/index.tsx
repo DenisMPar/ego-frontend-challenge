@@ -6,6 +6,7 @@ import {
   HeaderMenuRoot,
   HeaderMenuSeparator,
   HeaderMenuWrapper,
+  StyledLink,
 } from "./styled";
 
 export function HeaderMenuComponent({
@@ -20,7 +21,9 @@ export function HeaderMenuComponent({
       </HeaderMenuButton>
       <HeaderMenuWrapper>
         <HeaderMenuList>
-          <ButtonLink>Modelos</ButtonLink>
+          <StyledLink to="/" onClick={() => handleClose(false)}>
+            <ButtonLink>Modelos</ButtonLink>
+          </StyledLink>
           <ButtonLink>setvicios y accesorios</ButtonLink>
           <ButtonLink>Financiacion</ButtonLink>
           <ButtonLink>Reviews y comunidad</ButtonLink>

@@ -1,30 +1,43 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import { CarFeatures, fetchCarFeatures } from "../../lib/api/cars";
+import { fetchCarFeatures } from "../../lib/api/cars";
 import { CarouselComponent } from "../carousel";
 import { CarDetailFeatures } from "./features";
 import { CarDetailHero } from "./hero";
-import { CarDetailRoot } from "./styled";
+import { CarDetailSkeletons } from "./skeletons";
+import { CarDetailError, CarDetailRoot } from "./styled";
+import { TitleSecondary } from "../../ui/tipography";
 
 export function CarDetailComponent() {
-  const [carDetails, setCarDetails] = useState<CarFeatures | null>(null);
   const params = useParams();
+  const {
+    data: carDetails,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["car-features"],
+    queryFn: () => fetchCarFeatures(params.id!),
+    staleTime: 1000 * 60 * 5,
+  });
 
-  useEffect(() => {
-    const getCarFeatures = async () => {
-      if (params.id) {
-        const carFeatures = await fetchCarFeatures(params.id);
-        setCarDetails(carFeatures);
-      }
-    };
-    getCarFeatures();
-  }, [params.id]);
   return (
     <CarDetailRoot>
+      {isError && (
+        <CarDetailError>
+          <TitleSecondary>Error al cargar los detalles del auto</TitleSecondary>
+        </CarDetailError>
+      )}
+      {isLoading && <CarDetailSkeletons />}
       {carDetails && (
         <>
           <CarDetailHero carFeatures={carDetails} />
-          <CarouselComponent carHiglights={carDetails.model_highlights} />
+          <CarouselComponent
+            carHiglights={[
+              ...carDetails.model_highlights,
+              ...carDetails.model_highlights,
+              ...carDetails.model_highlights,
+            ]}
+          />
           <CarDetailFeatures features={carDetails.model_features} />
         </>
       )}

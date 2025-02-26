@@ -6,6 +6,7 @@ export const TitlePrimary = styled.h1`
   font-size: 35px;
   line-height: 44px;
   letter-spacing: -0.7px;
+  color: var(--black-2);
 `;
 export const TitleSecondary = styled.h2`
   font-family: Montserrat;

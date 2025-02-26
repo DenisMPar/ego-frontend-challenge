@@ -1,15 +1,24 @@
 import styled from "styled-components";
 
 type ArrowProps = {
-  left?: boolean;
+  $left?: boolean;
   disabled?: boolean;
 };
 
 type DotProps = {
-  active?: boolean;
+  $active?: boolean;
 };
 
-export const CarouselSlider = styled.div``;
+export const CarouselSlider = styled.div<{ $isLastSlide: boolean }>`
+  @media screen and (min-width: 1024px) {
+    overflow: visible;
+    padding-left: ${({ $isLastSlide }) => ($isLastSlide ? "0" : "25px")};
+  }
+  @media screen and (min-width: 1440px) {
+    padding-left: ${({ $isLastSlide }) => ($isLastSlide ? "0" : "50px")};
+  }
+`;
+
 export const CarouselWrapper = styled.div`
   position: relative;
   background: #f7f7f7;
@@ -51,6 +60,9 @@ export const CarouselImage = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 8px;
+  @media screen and (min-width: 1024px) {
+    height: 146px;
+  }
 `;
 export const StyledArrow = styled.svg<ArrowProps>`
   display: none;
@@ -61,7 +73,7 @@ export const StyledArrow = styled.svg<ArrowProps>`
   transform: translateY(-50%);
   fill: #474747;
   cursor: pointer;
-  ${({ left }) => (left ? "left: 5px;" : "right: 5px;")}
+  ${({ $left }) => ($left ? "left: 5px;" : "right: 5px;")}
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
   @media (min-width: 768px) {
@@ -77,10 +89,10 @@ export const Dots = styled.div`
 
 export const Dot = styled.button<DotProps>`
   border: none;
-  width: ${({ active }) => (active ? "30px" : "8px")};
+  width: ${({ $active }) => ($active ? "30px" : "8px")};
   height: 8px;
-  background: ${({ active }) => (active ? "var(--black-3)" : "#c5c5c5")};
-  border-radius: ${({ active }) => (active ? "4px" : "50%")};
+  background: ${({ $active }) => ($active ? "var(--black-3)" : "#c5c5c5")};
+  border-radius: ${({ $active }) => ($active ? "4px" : "50%")};
   margin: 0 2%;
   padding: 0px;
   cursor: pointer;

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styled from "styled-components";
 
 export const HeaderMenuRoot = styled.div`
@@ -13,6 +14,12 @@ export const HeaderMenuRoot = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
+  @media screen and (min-width: 1024px) {
+    top: 0;
+    right: 0;
+    max-width: 390px;
+    height: 100vh;
+  }
 `;
 
 export const HeaderMenuWrapper = styled.div<{ __dark?: boolean }>`
@@ -23,6 +30,9 @@ export const HeaderMenuWrapper = styled.div<{ __dark?: boolean }>`
     props.__dark ? "var(--gray-2)" : "var(--white)"};
   padding: 31px 20px;
   padding-bottom: ${({ __dark }) => (__dark ? "55px" : "31px")};
+  @media screen and (min-width: 1024px) {
+    flex-grow: ${({ __dark }) => (__dark ? "1" : "0")};
+  }
 `;
 export const HeaderMenuBottom = styled.div`
   display: flex;
@@ -55,6 +65,10 @@ export const HeaderMenuSeparator = styled.hr<{ dark?: boolean }>`
   width: 100%;
 `;
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export const HeaderMenuButton = styled.button`
   border: none;
   background: none;
@@ -69,7 +83,12 @@ export const HeaderMenuButton = styled.button`
   color: var(--black-2);
   margin-right: 25px;
   align-self: flex-end;
+  text-decoration: none;
+  cursor: pointer;
   &:focus-visible {
     outline: none;
+  }
+  &:hover {
+    text-decoration: underline;
   }
 `;

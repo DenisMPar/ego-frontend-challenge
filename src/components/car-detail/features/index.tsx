@@ -7,8 +7,12 @@ interface Props {
 export function CarDetailFeatures({ features }: Props) {
   return (
     <CarDetailFeaturesRoot>
-      {features.map((feature) => (
-        <CardDetailFeatureCard feature={feature} />
+      {features.map((feature, index) => (
+        <CardDetailFeatureCard
+          key={feature.name}
+          feature={feature}
+          imageRight={index % 2 === 0}
+        />
       ))}
     </CarDetailFeaturesRoot>
   );

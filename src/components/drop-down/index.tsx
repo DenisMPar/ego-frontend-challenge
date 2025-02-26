@@ -15,6 +15,7 @@ interface Props {
   items: { text: ReactNode; value: string }[];
   onChange: (value: string) => void;
   defaultValue?: string;
+  className?: string;
 }
 
 export function DropDownComponent({
@@ -23,6 +24,7 @@ export function DropDownComponent({
   title,
   justify,
   defaultValue,
+  className,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | undefined>(
@@ -39,7 +41,6 @@ export function DropDownComponent({
     function handleClickOutside(e: MouseEvent) {
       const target = e.target as HTMLElement;
       if (target.closest("button") === null) {
-        console.log("click outside");
         setIsOpen(false);
       }
     }
@@ -52,14 +53,14 @@ export function DropDownComponent({
   }, []);
 
   return (
-    <DropDownRoot>
-      <DropDownButton onClick={() => setIsOpen(!isOpen)} __justify={justify}>
+    <DropDownRoot className={className}>
+      <DropDownButton onClick={() => setIsOpen(!isOpen)} $justify={justify}>
         {title}
-        <DropDownArrow __isOpen={isOpen} />
+        <DropDownArrow $isOpen={isOpen} />
       </DropDownButton>
       {isOpen && (
-        <DropDownList __justify={justify}>
-          {items.map((item) => (
+        <DropDownList $justify={justify}>
+          {items.map((item, index) => (
             <Fragment key={item.value}>
               <ListItem
                 selected={selectedOption === item.value}
@@ -67,7 +68,7 @@ export function DropDownComponent({
               >
                 <Caption3>{item.text}</Caption3>
               </ListItem>
-              <DropDownSeparator />
+              {index < items.length - 1 && <DropDownSeparator />}
             </Fragment>
           ))}
         </DropDownList>

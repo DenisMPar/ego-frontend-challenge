@@ -1,17 +1,39 @@
 import { useState } from "react";
-import { BurgerMenuIcon, EgoIcon } from "../../../ui/icons";
+import { Link, useLocation } from "react-router";
+import { EgoIcon } from "../../../ui/icons";
 import { HeaderMenuComponent } from "./menu";
-import { HeaderIconButton, HeaderRoot } from "./styled";
+import {
+  HeaderIconButton,
+  HeaderLogoWrapper,
+  HeaderPageIndicator,
+  HeaderPageIndicatorsContainer,
+  HeaderRoot,
+  StyledBurgerIcon,
+} from "./styled";
 
 export function HeaderComponent() {
   const [isOpen, setIsOpen] = useState(false);
-  console.log({ isOpen });
+  const { pathname } = useLocation();
 
   return (
     <HeaderRoot>
-      <EgoIcon />
+      <HeaderLogoWrapper>
+        <Link to="/">
+          <EgoIcon />
+        </Link>
+        <HeaderPageIndicatorsContainer>
+          <HeaderPageIndicator $active={pathname === "/" ? "true" : undefined}>
+            Modelos
+          </HeaderPageIndicator>
+          <HeaderPageIndicator
+            $active={pathname.startsWith("/model/") ? "true" : undefined}
+          >
+            Ficha de modelo
+          </HeaderPageIndicator>
+        </HeaderPageIndicatorsContainer>
+      </HeaderLogoWrapper>
       <HeaderIconButton onClick={() => setIsOpen(true)}>
-        <BurgerMenuIcon />
+        <StyledBurgerIcon />
       </HeaderIconButton>
       {isOpen && <HeaderMenuComponent handleClose={setIsOpen} />}
     </HeaderRoot>

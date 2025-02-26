@@ -1,9 +1,11 @@
 import { CarModelData } from "../../lib/api/cars";
+import { ButtonRounded } from "../../ui/buttons";
 import { Caption2, TitleTertiary } from "../../ui/tipography";
 import {
   ModelCardImage,
   ModelCardImageContainer,
   ModelCardRoot,
+  ViewModelButtonContainer,
 } from "./styled";
 
 interface ModelCardProps {
@@ -20,6 +22,9 @@ export function ModelCardComponent({ carData }: ModelCardProps) {
         </Caption2>
         <ModelCardImage src={carData.thumbnail} />
       </ModelCardImageContainer>
+      <ViewModelButtonContainer>
+        <ButtonRounded>Ver modelo</ButtonRounded>
+      </ViewModelButtonContainer>
     </ModelCardRoot>
   );
 }

@@ -1,10 +1,11 @@
 import { CarFeatures } from "../../../lib/api/cars";
-import { Body, TitleSecondary } from "../../../ui/tipography";
+import { Body } from "../../../ui/tipography";
 import {
   CarDetailHeroCaption,
   CarDetailHeroImage,
   CarDetailHeroRoot,
   CarDetailHeroTextContainer,
+  CarDetailHeroTitle,
   CarDetailHeroTitleContainer,
 } from "./styled";
 
@@ -13,15 +14,19 @@ interface Props {
 }
 
 export function CarDetailHero({ carFeatures }: Props) {
+  const bodyTextWithoutTags = carFeatures.description.replace(
+    /(<([^>]+)>)/gi,
+    ""
+  );
   return (
     <CarDetailHeroRoot>
       <CarDetailHeroImage src={carFeatures.photo} />
       <CarDetailHeroTextContainer>
         <CarDetailHeroTitleContainer>
           <CarDetailHeroCaption>{carFeatures.name}</CarDetailHeroCaption>
-          <TitleSecondary>{carFeatures.title} </TitleSecondary>
+          <CarDetailHeroTitle>{carFeatures.title} </CarDetailHeroTitle>
         </CarDetailHeroTitleContainer>
-        <Body>{carFeatures.description.replace(/(<([^>]+)>)/gi, "")}</Body>
+        <Body>{bodyTextWithoutTags}</Body>
       </CarDetailHeroTextContainer>
     </CarDetailHeroRoot>
   );
