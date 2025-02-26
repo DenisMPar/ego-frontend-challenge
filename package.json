@@ -1,5 +1,5 @@
 {
-  "name": "challenge-vita",
+  "name": "challenge-ego-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,7 +16,6 @@
     "@tanstack/react-query-devtools": "^5.66.9",
     "framer-motion": "^12.4.7",
     "keen-slider": "^6.8.6",
-    "nock": "^14.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.2.0",
@@ -38,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "jsdom": "^26.0.0",
+    "nock": "^14.0.1",
     "react-test-renderer": "^19.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",

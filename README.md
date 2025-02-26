@@ -1,50 +1,33 @@
-# React + TypeScript + Vite
+# Ego Challenge Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Ejecutar aplicacion
 
-Currently, two official plugins are available:
+### Para ejecutar la app debemos seguir los siguientes pasos:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Instalar los paquetes con tu comando preferido
 
-## Expanding the ESLint configuration
+`npm install`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`yarn install`
 
-- Configure the top-level `parserOptions` property like this:
+> Crear un archivo .env con la siguiente variable en el directorio raiz (al mismo nivel que package.json, index.html, etc)
+>
+> `VITE_API_URL = https://challenge.egodesign.dev/api`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Para levantar el proyecto en modo desarrollo:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+`npm run dev`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+`yarn dev`
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Para correr los test:
+
+`npm run test`
+
+`yarn test`
+
+Para correr los test con coverage:
+
+`npm run test:coverage`
+
+`yarn test:coverage`
