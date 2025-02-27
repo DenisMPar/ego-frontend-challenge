@@ -71,11 +71,14 @@ export function useGetCarDetails(modelId: string) {
     isLoading,
     isError,
     isSuccess,
+    isFetching,
   } = useQuery({
     queryKey: ["car-features"],
     queryFn: () => fetchCarFeatures(modelId),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
 
-  return { carDetails, isLoading, isError, isSuccess };
+  return { carDetails, isLoading, isError, isSuccess, isFetching };
 }

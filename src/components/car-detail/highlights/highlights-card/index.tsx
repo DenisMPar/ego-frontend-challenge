@@ -1,28 +1,29 @@
+import { AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ModelFeature } from "../../../../lib/api/cars";
+import { ModelHighlight } from "../../../../lib/api/cars";
 import { Body, TitleQuaternary } from "../../../../ui/tipography";
 import {
-  CarDetailFeaturesCardImage,
-  CarDetailFeaturesCardRoot,
-  CarDetailFeaturesCardTextContainer,
+  CarDetailHighlightsCardImage,
+  CarDetailHighlightsCardRoot,
+  CarDetailHighlightsCardTextContainer,
 } from "./styled";
-import { AnimatePresence, useInView } from "framer-motion";
 
-export function CardDetailFeatureCard({
+export function CardDetailHighlightCard({
   feature,
   imageRight,
 }: {
-  feature: ModelFeature;
+  feature: ModelHighlight;
   imageRight: boolean;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const bodyTextWithoutTags = feature.content.replace(/<[^>]*>/g, "");
 
   return (
-    <CarDetailFeaturesCardRoot $imageRight={imageRight} ref={ref}>
+    <CarDetailHighlightsCardRoot $imageRight={imageRight} ref={ref}>
       <AnimatePresence>
-        <CarDetailFeaturesCardImage
-          key={`image-${feature.name}`}
+        <CarDetailHighlightsCardImage
+          key={`image-${feature.title}`}
           initial={{ opacity: 0, x: `${imageRight ? -100 : 100}%`, scale: 0 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -31,11 +32,11 @@ export function CardDetailFeatureCard({
           }}
           transition={{ duration: 0.5 }}
           style={{ order: `${imageRight ? 2 : 1}` }}
-          alt={feature.name}
+          alt={feature.title}
           src={feature.image}
         />
-        <CarDetailFeaturesCardTextContainer
-          key={`text-${feature.name}`}
+        <CarDetailHighlightsCardTextContainer
+          key={`text-${feature.title}`}
           initial={{ opacity: 0, y: `${imageRight ? -100 : 100}%`, scale: 0 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -45,10 +46,10 @@ export function CardDetailFeatureCard({
           transition={{ duration: 0.5 }}
           style={{ order: `${imageRight ? 2 : 1}` }}
         >
-          <TitleQuaternary>{feature.name}</TitleQuaternary>
-          <Body>{feature.description}</Body>
-        </CarDetailFeaturesCardTextContainer>
+          <TitleQuaternary>{feature.title}</TitleQuaternary>
+          <Body>{bodyTextWithoutTags}</Body>
+        </CarDetailHighlightsCardTextContainer>
       </AnimatePresence>
-    </CarDetailFeaturesCardRoot>
+    </CarDetailHighlightsCardRoot>
   );
 }

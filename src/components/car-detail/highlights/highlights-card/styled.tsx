@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const CarDetailFeaturesCardRoot = styled.div<{ $imageRight?: boolean }>`
+export const CarDetailHighlightsCardRoot = styled.div<{
+  $imageRight?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,7 +22,7 @@ export const CarDetailFeaturesCardRoot = styled.div<{ $imageRight?: boolean }>`
   }
 `;
 
-export const CarDetailFeaturesCardTextContainer = styled(motion.div)`
+export const CarDetailHighlightsCardTextContainer = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,7 +36,7 @@ export const CarDetailFeaturesCardTextContainer = styled(motion.div)`
   }
 `;
 
-export const CarDetailFeaturesCardImage = styled(motion.img)`
+export const CarDetailHighlightsCardImage = styled(motion.img)`
   position: relative;
   width: 100%;
   height: 200px;

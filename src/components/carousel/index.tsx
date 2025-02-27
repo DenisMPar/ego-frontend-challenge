@@ -11,6 +11,7 @@ import {
   Dots,
   StyledArrow,
 } from "./styled";
+import { ModelFeature } from "../../lib/api/cars";
 
 type ArrowProps = {
   left?: boolean;
@@ -37,13 +38,9 @@ function Arrow({ left, onClick, disabled }: ArrowProps) {
 }
 
 export interface CarouselProps {
-  carHiglights: {
-    title: string;
-    content: string;
-    image: string;
-  }[];
+  carFeatures: ModelFeature[];
 }
-export function CarouselComponent({ carHiglights }: CarouselProps) {
+export function CarouselComponent({ carFeatures }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSlidesNumber, setActiveSlidesNumber] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -99,10 +96,10 @@ export function CarouselComponent({ carHiglights }: CarouselProps) {
       },
     },
   });
-  const totalSlides = carHiglights.length;
+  const totalSlides = carFeatures.length;
   const dots = totalSlides - activeSlidesNumber + 1;
 
-  const finalSlide = carHiglights.length - 1;
+  const finalSlide = carFeatures.length - 1;
 
   return (
     <CarouselWrapper>
@@ -111,8 +108,7 @@ export function CarouselComponent({ carHiglights }: CarouselProps) {
         ref={sliderRef}
         className="keen-slider"
       >
-        {carHiglights.map((feature, idx) => {
-          const bodyTextWithoutTags = feature.content.replace(/<[^>]*>/g, "");
+        {carFeatures.map((feature, idx) => {
           const isInView =
             idx >= currentSlide && idx < currentSlide + activeSlidesNumber;
           return (
@@ -123,8 +119,8 @@ export function CarouselComponent({ carHiglights }: CarouselProps) {
               } ${idx === finalSlide ? "final-slide" : ""}`}
             >
               <CarouselImage src={feature.image} alt={`Slide ${idx + 1}`} />
-              <Caption>{feature.title}</Caption>
-              <Body>{bodyTextWithoutTags}</Body>
+              <Caption>{feature.name}</Caption>
+              <Body>{feature.description}</Body>
             </CarouselSlide>
           );
         })}

@@ -2,14 +2,14 @@ import { useParams } from "react-router";
 import { useGetCarDetails } from "../../hooks/cars";
 import { TitleSecondary } from "../../ui/tipography";
 import { CarouselComponent } from "../carousel";
-import { CarDetailFeatures } from "./features";
+import { CarDetailHighlights } from "./highlights";
 import { CarDetailHero } from "./hero";
 import { CarDetailSkeletons } from "./skeletons";
 import { CarDetailError, CarDetailRoot } from "./styled";
 
 export function CarDetailComponent() {
   const params = useParams();
-  const { carDetails, isLoading, isError } = useGetCarDetails(
+  const { carDetails, isLoading, isError, isFetching } = useGetCarDetails(
     params.id as string
   );
 
@@ -20,18 +20,20 @@ export function CarDetailComponent() {
           <TitleSecondary>Error al cargar los detalles del auto</TitleSecondary>
         </CarDetailError>
       )}
-      {isLoading && <CarDetailSkeletons />}
-      {carDetails && (
+
+      {(isLoading || isFetching) && <CarDetailSkeletons />}
+
+      {!isLoading && !isFetching && carDetails && (
         <>
           <CarDetailHero carFeatures={carDetails} />
           <CarouselComponent
-            carHiglights={[
-              ...carDetails.model_highlights,
-              ...carDetails.model_highlights,
-              ...carDetails.model_highlights,
+            carFeatures={[
+              ...carDetails.model_features,
+              ...carDetails.model_features,
+              ...carDetails.model_features,
             ]}
           />
-          <CarDetailFeatures features={carDetails.model_features} />
+          <CarDetailHighlights highLights={carDetails.model_highlights} />
         </>
       )}
     </CarDetailRoot>

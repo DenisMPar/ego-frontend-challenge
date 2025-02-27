@@ -28,7 +28,7 @@ export function HeaderMenuComponent({
           <StyledLink to="/" onClick={() => handleClose(false)}>
             <ButtonLink>Modelos</ButtonLink>
           </StyledLink>
-          <ButtonLink>setvicios y accesorios</ButtonLink>
+          <ButtonLink>Servicios y accesorios</ButtonLink>
           <ButtonLink>Financiacion</ButtonLink>
           <ButtonLink>Reviews y comunidad</ButtonLink>
         </HeaderMenuList>
