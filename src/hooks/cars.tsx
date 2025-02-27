@@ -75,7 +75,7 @@ export function useGetCarDetails(modelId: string) {
   } = useQuery({
     queryKey: ["car-features"],
     queryFn: () => fetchCarFeatures(modelId),
-    staleTime: 1000 * 60 * 60,
+    staleTime: 0,
     refetchOnWindowFocus: true,
     refetchOnMount: true,
   });
